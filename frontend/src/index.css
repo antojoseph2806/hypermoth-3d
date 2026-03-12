@@ -1,0 +1,161 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 5%;
+    --foreground: 20 5% 96%;
+
+    --card: 0 0% 8%;
+    --card-foreground: 20 5% 96%;
+
+    --popover: 0 0% 8%;
+    --popover-foreground: 20 5% 96%;
+
+    --primary: 0 80% 50%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 0 0% 12%;
+    --secondary-foreground: 20 5% 96%;
+
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 50%;
+
+    --accent: 0 80% 50%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 16%;
+    --input: 0 0% 16%;
+    --ring: 0 80% 50%;
+
+    --radius: 0px;
+
+    --sidebar-background: 0 0% 8%;
+    --sidebar-foreground: 20 5% 96%;
+    --sidebar-primary: 0 80% 50%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 0 0% 12%;
+    --sidebar-accent-foreground: 20 5% 96%;
+    --sidebar-border: 0 0% 16%;
+    --sidebar-ring: 0 80% 50%;
+
+    /* Custom tokens */
+    --glow-red: 0 100% 40%;
+    --surface-dark: 0 0% 3%;
+    --surface-elevated: 0 0% 10%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-medium;
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Bebas Neue', sans-serif;
+    letter-spacing: 0.05em;
+  }
+
+  /* Lenis smooth scroll */
+  html.lenis, html.lenis body {
+    height: auto;
+  }
+
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+
+  .lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+  }
+
+  .lenis.lenis-stopped {
+    overflow: hidden;
+  }
+
+  .lenis.lenis-scrolling iframe {
+    pointer-events: none;
+  }
+}
+
+/* Custom utilities */
+@layer utilities {
+  .font-display {
+    font-family: 'Bebas Neue', sans-serif;
+    letter-spacing: 0.05em;
+  }
+
+  .font-body {
+    font-family: 'Inter', sans-serif;
+  }
+
+  .text-glow-red {
+    text-shadow: 0 0 60px hsl(var(--glow-red) / 0.4), 0 0 120px hsl(var(--glow-red) / 0.2);
+  }
+
+  .glow-red-left {
+    box-shadow: -80px 0 120px 40px hsl(var(--glow-red) / 0.15);
+  }
+
+  .glow-red-right {
+    box-shadow: 80px 0 120px 40px hsl(var(--glow-red) / 0.15);
+  }
+
+  .border-glow {
+    border-color: hsl(var(--primary) / 0.3);
+  }
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 3px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--background));
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--muted-foreground) / 0.3);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--muted-foreground) / 0.5);
+}
+
+/* Smooth scroll fallback */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Selection color */
+::selection {
+  background: hsl(var(--primary) / 0.3);
+  color: hsl(var(--foreground));
+}
+
+/* Native cursor is hidden only when custom cursor is enabled on fine pointers */
+.has-custom-cursor,
+.has-custom-cursor body,
+.has-custom-cursor a,
+.has-custom-cursor button,
+.has-custom-cursor [role="button"],
+.has-custom-cursor [tabindex],
+.has-custom-cursor label,
+.has-custom-cursor summary,
+.has-custom-cursor .cursor-pointer {
+  cursor: none !important;
+}

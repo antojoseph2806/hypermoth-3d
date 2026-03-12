@@ -1,0 +1,101 @@
+{
+  "c3335685-ab2d-4334-a840-5006d28a6ec2": {
+    "artists": [
+      {
+        "name": "Sofia Riyas",
+        "image_url": "https://amnxuwxwmifiqhiskise.supabase.co/storage/v1/object/public/event-images/artists/artists-1773222202202-389886441.webp",
+        "specialization": "Deep House",
+        "bio": ""
+      },
+      {
+        "name": "Wiz Khalifa",
+        "image_url": "https://amnxuwxwmifiqhiskise.supabase.co/storage/v1/object/public/event-images/artists/artists-1773222215314-816322879.webp",
+        "specialization": "Live Visual",
+        "bio": ""
+      }
+    ],
+    "gallery_images": [
+      "https://amnxuwxwmifiqhiskise.supabase.co/storage/v1/object/public/event-images/1772555948624-6kb2o9z3u.png"
+    ],
+    "preferred_dates": [
+      "2026-03-16T06:00",
+      "2026-03-18T07:00",
+      "2026-03-20T08:00"
+    ],
+    "updated_at": "2026-03-11T10:26:34.011Z"
+  },
+  "49749dc8-2312-4c23-ada7-b268370a6f19": {
+    "artists": [
+      {
+        "name": "Sofia Riyas",
+        "image_url": "https://amnxuwxwmifiqhiskise.supabase.co/storage/v1/object/public/event-images/artists/artists-1773222259470-837441127.webp",
+        "specialization": "Deep House",
+        "bio": ""
+      },
+      {
+        "name": "Wiz Khalifa",
+        "image_url": "https://amnxuwxwmifiqhiskise.supabase.co/storage/v1/object/public/event-images/artists/artists-1773222275957-777294942.webp",
+        "specialization": "Live Visuals",
+        "bio": ""
+      }
+    ],
+    "gallery_images": [
+      "https://amnxuwxwmifiqhiskise.supabase.co/storage/v1/object/public/event-images/1772556556574-d7750xtum.png"
+    ],
+    "updated_at": "2026-03-11T09:44:51.325Z"
+  },
+  "de09c9ba-babb-4680-b600-06beb98f6a9c": {
+    "artists": [
+      {
+        "name": "Sofia Riyas",
+        "image_url": "https://amnxuwxwmifiqhiskise.supabase.co/storage/v1/object/public/event-images/artists/artists-1773222351824-581107309.webp",
+        "specialization": "Deep House",
+        "bio": ""
+      },
+      {
+        "name": "Wiz Khalifa",
+        "image_url": "https://amnxuwxwmifiqhiskise.supabase.co/storage/v1/object/public/event-images/artists/artists-1773222370671-459774368.webp",
+        "specialization": "Live Visuals",
+        "bio": ""
+      }
+    ],
+    "gallery_images": [
+      "https://amnxuwxwmifiqhiskise.supabase.co/storage/v1/object/public/event-images/1772556702321-cwnepzeuq.png"
+    ],
+    "updated_at": "2026-03-11T09:46:18.619Z"
+  },
+  "040943cb-2735-47a3-8eda-6badae43b2a2": {
+    "artists": [
+      {
+        "name": "Job Kurian",
+        "image_url": "https://amnxuwxwmifiqhiskise.supabase.co/storage/v1/object/public/event-images/artists/artists-1773223610885-258290684.jpg",
+        "specialization": "Classic Music",
+        "bio": ""
+      },
+      {
+        "name": "Vedan",
+        "image_url": "https://amnxuwxwmifiqhiskise.supabase.co/storage/v1/object/public/event-images/artists/artists-1773223633054-339053540.jpg",
+        "specialization": "Rapper",
+        "bio": ""
+      }
+    ],
+    "gallery_images": [
+      "https://amnxuwxwmifiqhiskise.supabase.co/storage/v1/object/public/event-images/1772556976012-1u8r39qhj.png"
+    ],
+    "updated_at": "2026-03-11T10:07:28.812Z"
+  },
+  "a854f11f-9654-44a4-be2b-42b4ed7148e0": {
+    "artists": [
+      {
+        "name": "Fejo",
+        "image_url": "https://amnxuwxwmifiqhiskise.supabase.co/storage/v1/object/public/event-images/artists/artists-1773223793948-800520469.webp",
+        "specialization": "Rapper",
+        "bio": ""
+      }
+    ],
+    "gallery_images": [
+      "https://amnxuwxwmifiqhiskise.supabase.co/storage/v1/object/public/event-images/1771768575620-386nhr7lt.webp"
+    ],
+    "updated_at": "2026-03-11T10:10:00.816Z"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "slides": [
+    {
+      "id": 1,
+      "image_url": "https://amnxuwxwmifiqhiskise.supabase.co/storage/v1/object/public/event-images/homepage-showcase/showcase-1773149583377-361394927.png",
+      "title": "",
+      "subtitle": ""
+    },
+    {
+      "id": 2,
+      "image_url": "https://amnxuwxwmifiqhiskise.supabase.co/storage/v1/object/public/event-images/homepage-showcase/showcase-1773149578613-749321096.png",
+      "title": "",
+      "subtitle": ""
+    },
+    {
+      "id": 3,
+      "image_url": "https://amnxuwxwmifiqhiskise.supabase.co/storage/v1/object/public/event-images/homepage-showcase/showcase-1773149563746-652956497.png",
+      "title": "",
+      "subtitle": ""
+    }
+  ],
+  "updated_at": "2026-03-10T13:34:28.742Z"
+}
