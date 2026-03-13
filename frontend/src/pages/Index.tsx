@@ -1,6 +1,6 @@
 import { useLenis } from "@/hooks/useLenis";
 import Navbar from "@/components/Navbar";
-import EventsSection from "@/components/EventsSection";
+import FeaturedEventsSection from "@/components/EventsSection";
 import AboutSection from "@/components/AboutSection";
 import ProjectSection from "@/components/ProjectSection";
 import TeamSection from "@/components/TeamSection";
@@ -14,7 +14,7 @@ const Index = () => {
   return (
     <div className="bg-background text-foreground">
       <Navbar />
-      <EventsSection />
+      <FeaturedEventsSection />
       <AboutSection />
       <ProjectSection />
       <TeamSection />

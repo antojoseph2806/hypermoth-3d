@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { ChevronLeft, ChevronRight, LoaderCircle } from "lucide-react";
+import { LoaderCircle } from "lucide-react";
 import { API_URL } from "@/config/api";
 
 type FeaturedArtist = {
@@ -325,44 +325,23 @@ const ProjectSection = () => {
               </p>
             </motion.div>
 
-            <div className="mt-10 flex items-center justify-center gap-4">
-              <button
-                type="button"
-                onClick={goPrev}
-                className="flex h-12 w-12 items-center justify-center border border-border/40 text-foreground/80 transition-all duration-300 hover:border-primary hover:text-primary"
-                aria-label="Previous artist"
-              >
-                <ChevronLeft className="h-5 w-5" />
-              </button>
-              <span className="font-body text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
-                Swipe or use arrows
-              </span>
-              <div className="ml-4 flex gap-2">
-                {artists.map((artist, index) => (
-                  <button
-                    key={artist.key}
-                    type="button"
-                    onClick={() => setActiveIndex(index)}
-                    className="h-1.5 rounded-full transition-all duration-300"
-                    style={{
-                      width: index === activeIndex ? 28 : 8,
-                      backgroundColor:
-                        index === activeIndex
-                          ? "hsl(var(--primary))"
-                          : "hsl(var(--muted-foreground) / 0.35)",
-                    }}
-                    aria-label={`Go to artist ${index + 1}`}
-                  />
-                ))}
-              </div>
-              <button
-                type="button"
-                onClick={goNext}
-                className="flex h-12 w-12 items-center justify-center border border-border/40 text-foreground/80 transition-all duration-300 hover:border-primary hover:text-primary"
-                aria-label="Next artist"
-              >
-                <ChevronRight className="h-5 w-5" />
-              </button>
+            <div className="mt-10 flex items-center justify-center gap-2">
+              {artists.map((artist, index) => (
+                <button
+                  key={artist.key}
+                  type="button"
+                  onClick={() => setActiveIndex(index)}
+                  className="h-1.5 rounded-full transition-all duration-300"
+                  style={{
+                    width: index === activeIndex ? 28 : 8,
+                    backgroundColor:
+                      index === activeIndex
+                        ? "hsl(var(--primary))"
+                        : "hsl(var(--muted-foreground) / 0.35)",
+                  }}
+                  aria-label={`Go to artist ${index + 1}`}
+                />
+              ))}
             </div>
           </div>
         ) : (

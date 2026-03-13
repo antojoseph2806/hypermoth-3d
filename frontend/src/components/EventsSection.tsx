@@ -113,7 +113,7 @@ const FeaturedEventCardSkeleton = ({ cardWidth }: { cardWidth: number }) => (
   </div>
 );
 
-const EventsSection = () => {
+const FeaturedEventsSection = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const [events, setEvents] = useState<Event[]>([]);
@@ -174,6 +174,17 @@ const EventsSection = () => {
     () => upcomingEvents.slice(0, featuredCount),
     [upcomingEvents]
   );
+
+  // Auto-play functionality
+  useEffect(() => {
+    if (featuredEvents.length <= 1) return;
+
+    const intervalId = setInterval(() => {
+      setActiveIndex((prevIndex) => (prevIndex + 1) % featuredEvents.length);
+    }, 2000); // Change slide every 2 seconds
+
+    return () => clearInterval(intervalId);
+  }, [featuredEvents.length]);
 
   const visibleShowcaseSlides = useMemo(
     () =>
@@ -385,7 +396,7 @@ const EventsSection = () => {
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="mx-auto mb-16 w-[calc(100vw-3rem)] max-w-[1220px] md:w-[calc(100vw-6rem)]"
+            className="-mx-6 mb-12 md:-mx-16"
           >
             <EventShowcaseStrip slides={visibleShowcaseSlides} />
           </motion.div>
@@ -466,14 +477,6 @@ const EventsSection = () => {
                 </div>
               ) : (
                 <div className="relative w-full flex items-center justify-center px-6 md:px-0">
-                  <button
-                    type="button"
-                    onClick={goPrev}
-                    className="absolute left-0 z-30 hidden md:flex h-16 w-16 items-center justify-center border border-border/40 bg-background/5 text-foreground/80 backdrop-blur-[1px] transition-all duration-300 hover:bg-background/20 hover:text-primary"
-                    aria-label="Previous event"
-                  >
-                    <ChevronLeft className="h-6 w-6" />
-                  </button>
                   <div
                     className="flex items-center"
                     style={{
@@ -493,20 +496,12 @@ const EventsSection = () => {
                       />
                     ))}
                   </div>
-                  <button
-                    type="button"
-                    onClick={goNext}
-                    className="absolute right-0 z-30 hidden md:flex h-16 w-16 items-center justify-center border border-border/40 bg-background/5 text-foreground/80 backdrop-blur-[1px] transition-all duration-300 hover:bg-background/20 hover:text-primary"
-                    aria-label="Next event"
-                  >
-                    <ChevronRight className="h-6 w-6" />
-                  </button>
                 </div>
               )}
             </div>
             <div className="flex items-center justify-center gap-4 mt-10">
               <span className="text-[10px] tracking-[0.2em] text-muted-foreground uppercase font-body">
-                {isMobile ? "Swipe to browse" : "Use arrows to browse"}
+                {isMobile ? "Swipe to browse" : "Auto-playing slideshow"}
               </span>
               <div className="flex gap-2">
                 {featuredEvents.map((_, i) => (
@@ -549,4 +544,4 @@ const EventsSection = () => {
   );
 };
 
-export default EventsSection;
+export default FeaturedEventsSection;

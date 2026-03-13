@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+
 
 export type ShowcaseSlide = {
   id: number;
@@ -48,7 +48,7 @@ const EventShowcaseStrip = ({ slides }: { slides: ShowcaseSlide[] }) => {
   const activeSlide = slides[activeIndex];
 
   return (
-    <div className="relative mb-16 h-[320px] overflow-hidden border border-border/30 bg-black md:h-[460px]">
+    <div className="relative h-[480px] overflow-hidden border border-border/30 bg-black md:h-[640px]">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,55,55,0.18),transparent_42%)]" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,rgba(255,55,55,0.1),transparent_35%)]" />
 
@@ -91,42 +91,24 @@ const EventShowcaseStrip = ({ slides }: { slides: ShowcaseSlide[] }) => {
       </div>
 
       {slides.length > 1 ? (
-        <>
-          <button
-            type="button"
-            onClick={goPrev}
-            className="absolute left-4 top-1/2 z-30 flex h-14 w-14 -translate-y-1/2 items-center justify-center border border-white/60 bg-black/15 text-white backdrop-blur-sm transition-all duration-300 hover:border-primary hover:text-primary md:left-8"
-            aria-label="Previous showcase slide"
-          >
-            <ChevronLeft className="h-6 w-6" />
-          </button>
-          <button
-            type="button"
-            onClick={goNext}
-            className="absolute right-4 top-1/2 z-30 flex h-14 w-14 -translate-y-1/2 items-center justify-center border border-white/60 bg-black/15 text-white backdrop-blur-sm transition-all duration-300 hover:border-primary hover:text-primary md:right-8"
-            aria-label="Next showcase slide"
-          >
-            <ChevronRight className="h-6 w-6" />
-          </button>
-          <div className="absolute bottom-6 left-1/2 z-30 flex -translate-x-1/2 gap-2">
-            {slides.map((slide, index) => (
-              <button
-                key={slide.id}
-                type="button"
-                onClick={() => goToSlide(index)}
-                className="h-1.5 rounded-full transition-all duration-300"
-                style={{
-                  width: index === activeIndex ? 30 : 10,
-                  backgroundColor:
-                    index === activeIndex
-                      ? "hsl(var(--primary))"
-                      : "rgba(255,255,255,0.35)",
-                }}
-                aria-label={`Go to showcase slide ${index + 1}`}
-              />
-            ))}
-          </div>
-        </>
+        <div className="absolute bottom-6 left-1/2 z-30 flex -translate-x-1/2 gap-2">
+          {slides.map((slide, index) => (
+            <button
+              key={slide.id}
+              type="button"
+              onClick={() => goToSlide(index)}
+              className="h-1.5 rounded-full transition-all duration-300"
+              style={{
+                width: index === activeIndex ? 30 : 10,
+                backgroundColor:
+                  index === activeIndex
+                    ? "hsl(var(--primary))"
+                    : "rgba(255,255,255,0.35)",
+              }}
+              aria-label={`Go to showcase slide ${index + 1}`}
+            />
+          ))}
+        </div>
       ) : null}
     </div>
   );

@@ -20,7 +20,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useLenis } from "@/hooks/useLenis";
 import DashboardNavbar from "@/components/DashboardNavbar";
 import type { ShowcaseSlide } from "@/components/EventShowcaseStrip";
-import EventsSection from "@/components/EventsSection";
+import FeaturedEventsSection from "@/components/EventsSection";
 import AboutSection from "@/components/AboutSection";
 import ProjectSection from "@/components/ProjectSection";
 import TeamSection from "@/components/TeamSection";
@@ -149,7 +149,7 @@ const createInitialEventForm = (): EventFormState => ({
 
 const memberSections = (
   <>
-    <EventsSection />
+    <FeaturedEventsSection />
     <AboutSection />
     <ProjectSection />
     <TeamSection />

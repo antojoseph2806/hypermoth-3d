@@ -369,37 +369,54 @@ const EventDetailsModal = ({
                             Artists
                           </h3>
                           <div className="grid gap-4">
-                            {artists.map((artist, index) => (
-                              <div
-                                key={`${event.id}-artist-${index}`}
-                                className="flex gap-4 border border-border/30 bg-surface-elevated/30 p-4"
-                              >
-                                <div className="h-16 w-16 shrink-0 overflow-hidden rounded-full border border-border/25 bg-background/50">
-                                  {artist.image_url ? (
-                                    <img
-                                      src={artist.image_url}
-                                      alt={artist.name}
-                                      className="h-full w-full object-cover"
-                                    />
-                                  ) : (
-                                    <div className="flex h-full w-full items-center justify-center font-body text-[9px] uppercase tracking-[0.2em] text-muted-foreground">
-                                      Artist
-                                    </div>
-                                  )}
+                            {artists.map((artist, index) => {
+                              const artistKey = encodeURIComponent(artist.name?.trim().toLowerCase() || '');
+                              return (
+                                <div
+                                  key={`${event.id}-artist-${index}`}
+                                  className="flex gap-4 border border-border/30 bg-surface-elevated/30 p-4"
+                                >
+                                  <a
+                                    href={`/artist/${artistKey}`}
+                                    className="h-16 w-16 shrink-0 overflow-hidden rounded-full border border-border/25 bg-background/50 hover:border-primary transition-colors"
+                                    onClick={(e) => {
+                                      e.preventDefault();
+                                      navigate(`/artist/${artistKey}`);
+                                    }}
+                                  >
+                                    {artist.image_url ? (
+                                      <img
+                                        src={artist.image_url}
+                                        alt={artist.name}
+                                        className="h-full w-full object-cover"
+                                      />
+                                    ) : (
+                                      <div className="flex h-full w-full items-center justify-center font-body text-[9px] uppercase tracking-[0.2em] text-muted-foreground">
+                                        Artist
+                                      </div>
+                                    )}
+                                  </a>
+                                  <div>
+                                    <a
+                                      href={`/artist/${artistKey}`}
+                                      onClick={(e) => {
+                                        e.preventDefault();
+                                        navigate(`/artist/${artistKey}`);
+                                      }}
+                                      className="font-body text-sm font-semibold uppercase tracking-[0.14em] text-foreground hover:text-primary transition-colors cursor-pointer"
+                                    >
+                                      {artist.name}
+                                    </a>
+                                    <p className="mt-1 font-body text-[11px] uppercase tracking-[0.18em] text-primary/80">
+                                      {artist.specialization || "Featured Artist"}
+                                    </p>
+                                    <p className="mt-2 font-body text-sm leading-6 text-foreground/70">
+                                      {artist.bio || "Artist details will be added soon."}
+                                    </p>
+                                  </div>
                                 </div>
-                                <div>
-                                  <p className="font-body text-sm font-semibold uppercase tracking-[0.14em] text-foreground">
-                                    {artist.name}
-                                  </p>
-                                  <p className="mt-1 font-body text-[11px] uppercase tracking-[0.18em] text-primary/80">
-                                    {artist.specialization || "Featured Artist"}
-                                  </p>
-                                  <p className="mt-2 font-body text-sm leading-6 text-foreground/70">
-                                    {artist.bio || "Artist details will be added soon."}
-                                  </p>
-                                </div>
-                              </div>
-                            ))}
+                              );
+                            })}
                           </div>
                         </div>
                       ) : null}
@@ -515,7 +532,7 @@ const EventDetailsModal = ({
                 </div>
 
                 {/* Mobile Layout */}
-                <div className="lg:hidden">
+                <div className="lg:hidden flex flex-col" style={{ minHeight: '96vh' }}>
                   {/* Header */}
                   <div className="sticky top-0 z-10 bg-[#070b11] px-4 py-3 border-b border-white/5">
                     <div className="flex items-center justify-between">
@@ -625,32 +642,40 @@ const EventDetailsModal = ({
                         Artists
                       </h3>
                       <div className="grid grid-cols-2 gap-3">
-                        {artists.map((artist, index) => (
-                          <div
-                            key={`${event.id}-mobile-artist-${index}`}
-                            className="rounded-2xl border border-white/10 bg-white/[0.03] p-3 text-center"
-                          >
-                            <div className="mx-auto h-16 w-16 overflow-hidden rounded-full border border-white/10 bg-white/5">
-                              {artist.image_url ? (
-                                <img
-                                  src={artist.image_url}
-                                  alt={artist.name}
-                                  className="h-full w-full object-cover"
-                                />
-                              ) : (
-                                <div className="flex h-full w-full items-center justify-center text-[9px] uppercase tracking-[0.18em] text-white/40">
-                                  Artist
-                                </div>
-                              )}
-                            </div>
-                            <p className="mt-3 text-xs font-semibold uppercase tracking-[0.12em] text-white">
-                              {artist.name}
-                            </p>
-                            <p className="mt-1 text-[10px] uppercase tracking-[0.18em] text-white/50">
-                              {artist.specialization || "Featured Artist"}
-                            </p>
-                          </div>
-                        ))}
+                        {artists.map((artist, index) => {
+                          const artistKey = encodeURIComponent(artist.name?.trim().toLowerCase() || '');
+                          return (
+                            <a
+                              key={`${event.id}-mobile-artist-${index}`}
+                              href={`/artist/${artistKey}`}
+                              onClick={(e) => {
+                                e.preventDefault();
+                                navigate(`/artist/${artistKey}`);
+                              }}
+                              className="rounded-2xl border border-white/10 bg-white/[0.03] p-3 text-center hover:border-primary/60 transition-colors"
+                            >
+                              <div className="mx-auto h-16 w-16 overflow-hidden rounded-full border border-white/10 bg-white/5">
+                                {artist.image_url ? (
+                                  <img
+                                    src={artist.image_url}
+                                    alt={artist.name}
+                                    className="h-full w-full object-cover"
+                                  />
+                                ) : (
+                                  <div className="flex h-full w-full items-center justify-center text-[9px] uppercase tracking-[0.18em] text-white/40">
+                                    Artist
+                                  </div>
+                                )}
+                              </div>
+                              <p className="mt-3 text-xs font-semibold uppercase tracking-[0.12em] text-white hover:text-primary transition-colors">
+                                {artist.name}
+                              </p>
+                              <p className="mt-1 text-[10px] uppercase tracking-[0.18em] text-white/50">
+                                {artist.specialization || "Featured Artist"}
+                              </p>
+                            </a>
+                          );
+                        })}
                       </div>
                     </div>
                   ) : null}
@@ -746,22 +771,22 @@ const EventDetailsModal = ({
                   ) : null}
 
                   {/* Terms & Conditions */}
-                  <div className="px-4 pb-6">
-                    <button
-                      type="button"
-                      onClick={handleOpenBooking}
-                      className="mb-3 w-full h-11 rounded-lg border border-primary/50 bg-primary text-sm font-medium text-background hover:bg-primary/90 transition-colors"
-                    >
-                      Book Now
-                    </button>
+                  <div className="px-4 pb-[100px]">
                     <button className="w-full h-11 rounded-lg border border-white/15 bg-[#0d1118] text-sm font-medium text-white/80 hover:border-white/25 hover:bg-[#12161f] transition-colors">
                       Terms & Conditions
                     </button>
+                    <p className="mt-4 text-center text-xs text-white/40">BOOK NOW AVAILABLE</p>
                   </div>
 
-                  {/* Footer */}
-                  <div className="px-4 pb-4">
-                    <p className="text-center text-xs text-white/40">BOOK NOW AVAILABLE</p>
+                  {/* Mobile Sticky Footer — Book Now */}
+                  <div className="lg:hidden sticky bottom-0 left-0 right-0 z-20 px-4 pt-3 pb-5 bg-[#070b11] border-t border-white/10" style={{ backdropFilter: 'blur(12px)', background: 'rgba(7,11,17,0.97)' }}>
+                    <button
+                      type="button"
+                      onClick={handleOpenBooking}
+                      className="w-full h-12 rounded-lg border border-primary/50 bg-primary text-sm font-medium text-background hover:bg-primary/90 transition-colors tracking-[0.08em]"
+                    >
+                      Book Now
+                    </button>
                   </div>
                 </div>
               </div>

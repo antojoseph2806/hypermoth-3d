@@ -7,11 +7,30 @@ const __dirname = path.dirname(__filename);
 const DATA_DIR = path.resolve(__dirname, '../data');
 const EVENT_METADATA_FILE = path.join(DATA_DIR, 'event-metadata.json');
 
+const normalizeArtistImages = (images) =>
+  Array.isArray(images)
+    ? images.map((u) => (typeof u === 'string' ? u.trim() : '')).filter(Boolean)
+    : [];
+
+const normalizeReviews = (reviews) =>
+  Array.isArray(reviews)
+    ? reviews.map((r) => ({
+        reviewer: typeof r.reviewer === 'string' ? r.reviewer.trim() : 'Anonymous',
+        text: typeof r.text === 'string' ? r.text.trim() : '',
+        rating: typeof r.rating === 'number' ? Math.min(5, Math.max(0, r.rating)) : 0,
+      })).filter((r) => r.text)
+    : [];
+
 const normalizeArtist = (artist = {}) => ({
   name: typeof artist.name === 'string' ? artist.name.trim() : '',
   image_url: typeof artist.image_url === 'string' ? artist.image_url.trim() : '',
   specialization: typeof artist.specialization === 'string' ? artist.specialization.trim() : '',
   bio: typeof artist.bio === 'string' ? artist.bio.trim() : '',
+  band_name: typeof artist.band_name === 'string' ? artist.band_name.trim() : '',
+  instagram_id: typeof artist.instagram_id === 'string' ? artist.instagram_id.trim() : '',
+  spotify_id: typeof artist.spotify_id === 'string' ? artist.spotify_id.trim() : '',
+  artist_images: normalizeArtistImages(artist.artist_images),
+  reviews: normalizeReviews(artist.reviews),
 });
 
 const normalizeGalleryImages = (galleryImages) =>
