@@ -1,9 +1,8 @@
 import { useState, useRef, useCallback, useEffect, useMemo } from "react";
 import { motion } from "framer-motion";
-import { Calendar, ChevronLeft, ChevronRight, MapPin } from "lucide-react";
+import { Calendar, MapPin } from "lucide-react";
 import { useLocation, useNavigate } from "react-router-dom";
 import EventDetailsModal from "./EventDetailsModal";
-import EventShowcaseStrip, { type ShowcaseSlide } from "./EventShowcaseStrip";
 import AllEventsModal, { type Event } from "./AllEventsModal";
 import { Skeleton } from "@/components/ui/skeleton";
 import { API_URL } from "@/config/api";
@@ -119,7 +118,6 @@ const FeaturedEventsSection = () => {
   const [events, setEvents] = useState<Event[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [showcaseSlides, setShowcaseSlides] = useState<ShowcaseSlide[]>([]);
   const [activeIndex, setActiveIndex] = useState(0);
   const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
   const [isDetailsOpen, setIsDetailsOpen] = useState(false);
@@ -140,19 +138,6 @@ const FeaturedEventsSection = () => {
       .then((data) => setEvents(data.events || []))
       .catch((err) => setError(err instanceof Error ? err.message : "Failed to load"))
       .finally(() => setLoading(false));
-  }, []);
-
-  useEffect(() => {
-    fetch(`${API_URL}/api/events/showcase`)
-      .then((res) => (res.ok ? res.json() : Promise.reject(new Error("Failed to fetch showcase"))))
-      .then((data) => {
-        if (Array.isArray(data.slides)) {
-          setShowcaseSlides(data.slides);
-        }
-      })
-      .catch(() => {
-        setShowcaseSlides([]);
-      });
   }, []);
 
   const upcomingEvents = useMemo(
@@ -185,14 +170,6 @@ const FeaturedEventsSection = () => {
 
     return () => clearInterval(intervalId);
   }, [featuredEvents.length]);
-
-  const visibleShowcaseSlides = useMemo(
-    () =>
-      showcaseSlides.filter(
-        (slide) => typeof slide.image_url === "string" && slide.image_url.trim().length > 0
-      ),
-    [showcaseSlides]
-  );
 
   useEffect(() => {
     const el = carouselViewportRef.current;
@@ -341,7 +318,7 @@ const FeaturedEventsSection = () => {
 
   if (loading) {
     return (
-      <section id="events" className="relative py-32 px-6 md:px-16 bg-background overflow-x-clip md:overflow-hidden">
+      <section id="events" className="relative pt-32 pb-20 px-6 md:px-16 bg-background rounded-t-[2rem] md:rounded-t-[3rem] overflow-x-clip md:overflow-hidden shadow-2xl">
         <div className="absolute top-0 left-0 w-px h-full bg-gradient-to-b from-transparent via-primary/20 to-transparent" />
         <div className="absolute top-0 right-0 w-px h-full bg-gradient-to-b from-transparent via-primary/20 to-transparent" />
         <div className="max-w-7xl mx-auto">
@@ -379,29 +356,18 @@ const FeaturedEventsSection = () => {
 
   if (error) {
     return (
-      <section className="relative py-32 px-6 md:px-16 bg-background">
+      <section className="relative pt-32 pb-20 px-6 md:px-16 bg-background rounded-t-[2rem] md:rounded-t-[3rem] shadow-2xl">
         <div className="max-w-7xl mx-auto text-center text-destructive">{error}</div>
       </section>
     );
   }
 
   return (
-    <section id="events" className="relative py-32 px-6 md:px-16 bg-background overflow-x-clip md:overflow-hidden">
+    <section id="events" className="relative pt-32 pb-20 px-6 md:px-16 bg-background rounded-t-[2rem] md:rounded-t-[3rem] overflow-x-clip md:overflow-hidden shadow-2xl">
       <div className="absolute top-0 left-0 w-px h-full bg-gradient-to-b from-transparent via-primary/20 to-transparent" />
       <div className="absolute top-0 right-0 w-px h-full bg-gradient-to-b from-transparent via-primary/20 to-transparent" />
 
       <div className="max-w-7xl mx-auto">
-        {visibleShowcaseSlides.length > 0 ? (
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="-mx-6 mb-12 md:-mx-16"
-          >
-            <EventShowcaseStrip slides={visibleShowcaseSlides} />
-          </motion.div>
-        ) : null}
-
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}

@@ -48,7 +48,7 @@ const EventShowcaseStrip = ({ slides }: { slides: ShowcaseSlide[] }) => {
   const activeSlide = slides[activeIndex];
 
   return (
-    <div className="relative h-[480px] overflow-hidden border border-border/30 bg-black md:h-[640px]">
+    <div className="relative h-[70vh] md:h-[80vh] overflow-hidden bg-black">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,55,55,0.18),transparent_42%)]" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,rgba(255,55,55,0.1),transparent_35%)]" />
 
@@ -64,11 +64,13 @@ const EventShowcaseStrip = ({ slides }: { slides: ShowcaseSlide[] }) => {
           <img
             src={activeSlide.image_url}
             alt={activeSlide.title}
-            className="h-full w-full object-cover"
+            className="h-full w-full object-cover object-center"
             loading="lazy"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/35 to-black/55" />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-black/10" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
+          {/* Bottom gradient for smooth blend with next section */}
+          <div className="absolute bottom-0 left-0 right-0 h-32 md:h-40 bg-gradient-to-t from-background via-background/80 to-transparent" />
         </motion.div>
       </AnimatePresence>
 
