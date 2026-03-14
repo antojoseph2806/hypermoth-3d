@@ -41,8 +41,8 @@ const Index = () => {
       {visibleShowcaseSlides.length > 0 && (
         <EventShowcaseStrip slides={visibleShowcaseSlides} />
       )}
-      {/* Events Section with Overlap */}
-      <div className="relative -mt-24 md:-mt-32 z-10">
+      {/* Events Section - Full Section Below Hero */}
+      <div className="relative z-10">
         <FeaturedEventsSection />
       </div>
       <AboutSection />

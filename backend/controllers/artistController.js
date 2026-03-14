@@ -5,7 +5,7 @@ const buildArtistKey = (name = '') =>
   typeof name === 'string' ? name.trim().toLowerCase() : '';
 
 const getAvailableArtists = async () => {
-  const { data, error } = await supabase.from('events').select('id,title,date');
+  const { data, error } = await supabase.from('events').select('id,title,date,image_url,location');
 
   if (error) throw error;
 
@@ -28,6 +28,7 @@ const getAvailableArtists = async () => {
           if (!existing.band_name && artist.band_name) existing.band_name = artist.band_name;
           if (!existing.instagram_id && artist.instagram_id) existing.instagram_id = artist.instagram_id;
           if (!existing.spotify_id && artist.spotify_id) existing.spotify_id = artist.spotify_id;
+          if (!existing.website_url && artist.website_url) existing.website_url = artist.website_url;
           if ((!existing.artist_images || existing.artist_images.length === 0) && artist.artist_images?.length) {
             existing.artist_images = artist.artist_images;
           }
@@ -43,7 +44,13 @@ const getAvailableArtists = async () => {
           }
           existing.event_count += 1;
           if (!existing.events.some((e) => e.event_id === event.id)) {
-            existing.events.push({ event_id: event.id, title: event.title || 'Untitled', date: event.date || null });
+            existing.events.push({ 
+              event_id: event.id, 
+              title: event.title || 'Untitled', 
+              date: event.date || null,
+              image_url: event.image_url || '',
+              location: event.location || ''
+            });
           }
           return;
         }
@@ -57,10 +64,17 @@ const getAvailableArtists = async () => {
           band_name: artist.band_name || '',
           instagram_id: artist.instagram_id || '',
           spotify_id: artist.spotify_id || '',
+          website_url: artist.website_url || '',
           artist_images: Array.isArray(artist.artist_images) ? artist.artist_images : [],
           reviews: Array.isArray(artist.reviews) ? artist.reviews : [],
           event_count: 1,
-          events: [{ event_id: event.id, title: event.title || 'Untitled', date: event.date || null }],
+          events: [{ 
+            event_id: event.id, 
+            title: event.title || 'Untitled', 
+            date: event.date || null,
+            image_url: event.image_url || '',
+            location: event.location || ''
+          }],
         });
       });
     }),

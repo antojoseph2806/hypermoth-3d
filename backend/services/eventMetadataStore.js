@@ -29,6 +29,7 @@ const normalizeArtist = (artist = {}) => ({
   band_name: typeof artist.band_name === 'string' ? artist.band_name.trim() : '',
   instagram_id: typeof artist.instagram_id === 'string' ? artist.instagram_id.trim() : '',
   spotify_id: typeof artist.spotify_id === 'string' ? artist.spotify_id.trim() : '',
+  website_url: typeof artist.website_url === 'string' ? artist.website_url.trim() : '',
   artist_images: normalizeArtistImages(artist.artist_images),
   reviews: normalizeReviews(artist.reviews),
 });
